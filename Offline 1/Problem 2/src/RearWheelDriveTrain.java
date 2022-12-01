@@ -1,7 +1,6 @@
 public class RearWheelDriveTrain extends DriveTrain {
 
-    @Override
-    void setDriveTrainType() {
+    RearWheelDriveTrain() {
         this.driveTrainType = "Rear Wheel";
     }
 }

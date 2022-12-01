@@ -5,8 +5,6 @@ public abstract class DriveTrain {
         return driveTrainType;
     }
 
-    abstract void setDriveTrainType();
-
     @Override
     public String toString() {
         return "Drive Train Type: " + driveTrainType;

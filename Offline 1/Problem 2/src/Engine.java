@@ -5,8 +5,6 @@ public abstract class Engine {
         return engineType;
     }
 
-    abstract void setEngineType();
-
     @Override
     public String toString() {
         return "Engine Type: " + engineType;

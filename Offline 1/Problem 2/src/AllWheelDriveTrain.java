@@ -1,7 +1,6 @@
 public class AllWheelDriveTrain extends DriveTrain {
 
-    @Override
-    void setDriveTrainType() {
+    AllWheelDriveTrain() {
         this.driveTrainType = "All Wheels";
     }
 }

@@ -1,4 +1,4 @@
-public abstract class DriveTrain {
+abstract class DriveTrain {
     protected String driveTrainType;
 
     public String getDriveTrainType() {
@@ -10,3 +10,18 @@ public abstract class DriveTrain {
         return "Drive Train Type: " + driveTrainType;
     }
 }
+
+class RearWheelDriveTrain extends DriveTrain {
+
+    RearWheelDriveTrain() {
+        this.driveTrainType = "Rear Wheel";
+    }
+}
+
+class AllWheelDriveTrain extends DriveTrain {
+
+    AllWheelDriveTrain() {
+        this.driveTrainType = "All Wheels";
+    }
+}
+

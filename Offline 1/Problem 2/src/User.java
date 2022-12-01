@@ -13,8 +13,10 @@ public class User {
             System.out.println("3. United States");
             try {
                 choice = scanner.nextInt();
-                if (choice != 1 && choice != 2 && choice != 3) throw new Exception();
-                else choiceMade = true;
+                if (choice != 1 && choice != 2 && choice != 3)
+                    throw new Exception();
+                else
+                    choiceMade = true;
             } catch (Exception e) {
                 System.out.println("Please input a valid number.");
             }
@@ -23,10 +25,15 @@ public class User {
         CarFactory carFactory = new CarFactory();
         Car car = null;
 
-        if (choice == 1) car = carFactory.produceCar("Asia");
-        else if (choice == 2) car = carFactory.produceCar("Europe");
-        else car = carFactory.produceCar("United States");
+        if (choice == 1)
+            car = carFactory.produceCar("Asia");
+        else if (choice == 2)
+            car = carFactory.produceCar("Europe");
+        else
+            car = carFactory.produceCar("United States");
 
         car.showDetails();
+
+        scanner.close();
     }
 }

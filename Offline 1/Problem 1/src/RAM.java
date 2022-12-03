@@ -1,28 +1,22 @@
-abstract class RAM {
-    protected int frequency;
-    protected int price;
+abstract class RAM extends Component {
 
-    abstract void setRAMFrequency();
-
-    public RAM() {
-        setRAMFrequency();
-    }
 }
 
 class RAM2666 extends RAM {
 
+
     @Override
-    void setRAMFrequency() {
-        this.frequency = 2666;
-        this.price = 2620;
+    void setType() {
+        this.type = "8GB DDR4 RAM (2666 MHz)";
+        this.componentPrice = 2620;
     }
 }
 
 class RAM3200 extends RAM {
 
     @Override
-    void setRAMFrequency() {
-        this.frequency = 3200;
-        this.price = 2950;
+    void setType() {
+        this.type = "8GB DDR4 RAM (3200 MHz)";
+        this.componentPrice = 2950;
     }
 }

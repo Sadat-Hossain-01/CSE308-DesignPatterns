@@ -1,134 +1,118 @@
-import java.util.ArrayList;
-
 abstract class PCBuilder {
-    protected int totalPrice;
-    protected Processor processor;
-    protected Cooler cooler;
-    protected String drive;
-    protected String hardDisk;
-    protected String motherboard;
-    protected ArrayList<RAM> ramList;
-    protected ArrayList<GraphicsCard> gCardList;
+    protected PC pc;
 
-    void addRAM(int frequency) {
-        RAM r = null;
+    protected abstract void addProcessor();
 
-        if (frequency == 2666) {
-            r = new RAM2666();
-        } else if (frequency == 3200) {
-            r = new RAM3200();
-        }
+    protected abstract void addCooler();
 
-        if (r != null) {
-            ramList.add(r);
-            totalPrice += r.price;
-        }
+    protected abstract void addDVDDrive();
+
+    protected final void addHardDisk() {
+        pc.addComponent(new HardDisk());
     }
 
-    void addGraphicsCard(int memory) {
-        GraphicsCard g = null;
+    protected final void addMotherboard() {
+        pc.addComponent(new Motherboard());
+    }
 
+
+    protected final void addGraphicsCard(int memory) {
         if (memory == 2) {
-            g = new GCard2();
+            pc.addComponent(new GCard2());
         } else if (memory == 4) {
-            g = new GCard4();
-        }
-
-        if (g != null) {
-            gCardList.add(g);
-            totalPrice += g.price;
+            pc.addComponent(new GCard4());
         }
     }
 
-    void setBaseComponents() {
-        this.motherboard = "Default Motherboard";
-        this.hardDisk = "1 TB HDD";
-        this.totalPrice += 70000;
+    protected final void addRAM(int freq) {
+        if (freq == 2666) {
+            pc.addComponent(new RAM2666());
+        } else if (freq == 3200) {
+            pc.addComponent(new RAM3200());
+        }
     }
 
-    abstract void addProcessor();
+    public final void addBaseComponents() {
+        addProcessor();
+        addMotherboard();
+        addHardDisk();
+        addCooler();
+        addDVDDrive();
+    }
 
-    abstract void addCooler();
-
-    abstract void addDrive();
+    public PC getConstructedPC() {
+        return pc;
+    }
 }
 
-class PC1 extends PCBuilder {
+class i5Builder extends PCBuilder {
 
     @Override
-    void addProcessor() {
-        this.processor = new Processor5();
-        this.totalPrice += this.processor.price;
+    protected void addProcessor() {
+        pc.addComponent(new Processor5());
     }
 
     @Override
-    void addCooler() {
-        this.cooler = new CPUCooler();
-        this.totalPrice += this.cooler.price;
+    protected void addCooler() {
+        pc.addComponent(new CPUCooler());
     }
 
     @Override
-    void addDrive() {
+    protected void addDVDDrive() {
+        // do nothing
     }
-
 }
 
-class PC2 extends PCBuilder {
+class i7Builder extends PCBuilder {
 
     @Override
-    void addProcessor() {
-        this.processor = new Processor7();
-        this.totalPrice += this.processor.price;
+    protected void addProcessor() {
+        pc.addComponent(new Processor7());
     }
 
     @Override
-    void addCooler() {
-        this.cooler = new CPUCooler();
-        this.totalPrice += this.cooler.price;
+    protected void addCooler() {
+        pc.addComponent(new LiquidCooler());
     }
 
     @Override
-    void addDrive() {
+    protected void addDVDDrive() {
+        // do nothing
     }
-
 }
 
-class PC3 extends PCBuilder {
+class i9Builder extends PCBuilder {
 
     @Override
-    void addProcessor() {
-        this.processor = new Processor9();
-        this.totalPrice += this.processor.price;
+    protected void addProcessor() {
+        pc.addComponent(new Processor9());
     }
 
     @Override
-    void addCooler() {
+    protected void addCooler() {
+        // do nothing
     }
 
     @Override
-    void addDrive() {
-        this.drive = "DVD Drive";
-        this.totalPrice += 6000;
+    protected void addDVDDrive() {
+        pc.addComponent(new DVDDrive());
     }
-
 }
 
-class PC4 extends PCBuilder {
-    //the gaming PC
+class GamingPCBuilder extends PCBuilder {
 
     @Override
-    void addProcessor() {
-        this.processor = new Processor5700();
-        this.totalPrice += this.processor.price;
+    protected void addProcessor() {
+        pc.addComponent(new Processor5700());
     }
 
     @Override
-    void addCooler() {
+    protected void addCooler() {
+        // do nothing
     }
 
     @Override
-    void addDrive() {
+    protected void addDVDDrive() {
+        // do nothing
     }
-
 }
-

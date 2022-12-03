@@ -1,28 +1,20 @@
-abstract class Cooler {
-    protected String type;
-    protected int price;
-
-    abstract void setCoolerType();
-
-    public Cooler() {
-        setCoolerType();
-    }
+abstract class Cooler extends Component {
 }
 
 class CPUCooler extends Cooler {
 
     @Override
-    void setCoolerType() {
+    void setType() {
         this.type = "CPU Cooler";
-        this.price = 36000;
+        this.componentPrice = 36000;
     }
 }
 
 class LiquidCooler extends Cooler {
 
     @Override
-    void setCoolerType() {
+    void setType() {
         this.type = "Liquid Cooler";
-        this.price = 17000;
+        this.componentPrice = 17000;
     }
 }

@@ -6,10 +6,14 @@ public class Director {
     }
 
     public void constructPC() {
-        builder.setBaseComponents();
-        builder.addProcessor();
-        builder.addCooler();
-        builder.addDrive();
+        builder.addBaseComponents();
     }
 
+    public void addRAM(int freq) {
+        if (freq == 2666 || freq == 3200) builder.addRAM(freq);
+    }
+
+    public void addGraphicsCard(int memory) {
+        if (memory == 2 || memory == 4) builder.addGraphicsCard(memory);
+    }
 }

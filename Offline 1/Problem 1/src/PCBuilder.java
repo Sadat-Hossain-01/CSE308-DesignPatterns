@@ -1,6 +1,10 @@
 abstract class PCBuilder {
     protected PC pc;
 
+    public PCBuilder() {
+        pc = new PC();
+    }
+
     protected final void addMotherboard() {
         pc.addComponent(new Motherboard());
     }
@@ -18,25 +22,21 @@ abstract class PCBuilder {
     protected final void addRAM(int freq) {
         if (freq == 2666) {
             pc.addComponent(new RAM2666());
+            System.out.println("8 GB DDR4 2666MHz RAM added");
         } else if (freq == 3200) {
             pc.addComponent(new RAM3200());
+            System.out.println("8 GB DDR4 3200MHz RAM added");
         }
     }
 
     protected final void addGraphicsCard(int memory) {
         if (memory == 2) {
             pc.addComponent(new GCard2());
+            System.out.println("2 GB Graphics Card added");
         } else if (memory == 4) {
             pc.addComponent(new GCard4());
+            System.out.println("4 GB Graphics Card added");
         }
-    }
-
-    public final void addBaseComponents() {
-        addMotherboard();
-        addHardDisk();
-        addProcessor();
-        addCooler();
-        addDVDDrive();
     }
 
     public PC getConstructedPC() {

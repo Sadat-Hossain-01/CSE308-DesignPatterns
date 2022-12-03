@@ -1,12 +1,16 @@
-public class Director {
+public class PCDirector {
     private PCBuilder builder;
 
-    public Director(PCBuilder builder) {
+    public PCDirector(PCBuilder builder) {
         this.builder = builder;
     }
 
     public void constructPC() {
-        builder.addBaseComponents();
+        builder.addMotherboard();
+        builder.addHardDisk();
+        builder.addProcessor();
+        builder.addCooler();
+        builder.addDVDDrive();
     }
 
     public void addRAM(int freq) {

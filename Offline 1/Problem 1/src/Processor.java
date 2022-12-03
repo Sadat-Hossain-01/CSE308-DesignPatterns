@@ -14,7 +14,7 @@ class Processor5 extends Processor {
 
     @Override
     void setType() {
-        this.type = "11th Generation Core i5 Processor";
+        this.type = "Intel Core i5 11th Generation Processor";
         this.componentPrice = 20000;
     }
 }
@@ -23,7 +23,7 @@ class Processor7 extends Processor {
 
     @Override
     void setType() {
-        this.type = "11th Generation Core i7 Processor";
+        this.type = "Intel Core i7 11th Generation Processor";
         this.componentPrice = 37000;
     }
 }
@@ -32,7 +32,7 @@ class Processor9 extends Processor {
 
     @Override
     void setType() {
-        this.type = "11th Generation Core i9 Processor";
+        this.type = "Intel Core i9 11th Generation Processor";
         this.componentPrice = 65000;
     }
 }

@@ -18,7 +18,8 @@ public class Customer {
             inp = sc.next();
             c = inp.charAt(0);
 
-            if (c < '1' || c > '4') System.out.println("Please choose a proper choice between number 1 to 4.");
+            if (c == 'e' || c == 'E') System.out.println("You have to at least choose the base PC type");
+            else if (c < '1' || c > '4') System.out.println("Please choose a proper choice between number 1 to 4.");
             else orderStarted = true;
         }
 
@@ -37,7 +38,7 @@ public class Customer {
         boolean orderOn = true;
 
         while (orderOn) {
-            System.out.println("What more do you want to add to the PC?");
+            System.out.println("What more do you want to add to your PC?");
             System.out.println("1. 8GB DDR4 RAM (2666 MHz)");
             System.out.println("2. 8GB DDR4 RAM (3200 MHz)");
             System.out.println("3. 2GB Graphics Card");
@@ -51,7 +52,18 @@ public class Customer {
             else if (c == '2') builder.addRAM(3200);
             else if (c == '3') builder.addGraphicsCard(2);
             else if (c == '4') builder.addGraphicsCard(4);
-            else if (c == 'o' || c == 'O') System.out.println("You have to finish building this PC first!");
+            else if (c == 'o' || c == 'O') {
+                System.out.println("You have to finish building this PC first! Do you want to add something else to this PC?");
+                while (true) {
+                    System.out.println("Press Y to add more, N to finish.");
+                    c = sc.next().charAt(0);
+                    if (c == 'Y' || c == 'y') break;
+                    else if (c == 'N' || c == 'n') {
+                        orderOn = false;
+                        break;
+                    }
+                }
+            }
             else if (c == 'E' || c == 'e') {
                 orderOn = false;
                 break;
@@ -66,19 +78,13 @@ public class Customer {
         int cnt = 0;
 
         while (true) {
-            System.out.println("Press O to start a new order, and Q to quit.");
+            System.out.println("Press O to start a new order, and Q to quit the shop.");
             inp = sc.next();
             c = inp.charAt(0);
 
             if (c == 'q' || c == 'Q') {
-                if (cnt > 1) {
-                    System.out.println("Thanks for visiting us, hope to see you again!");
-                    break;
-                }
-                else {
-                    System.out.println("You have to order at least one item.");
-                    continue;
-                }
+                System.out.println("Thanks for visiting us, hope to see you again!");
+                break;
             }
             else if (c == 'O' || c == 'o') {
                 // start a new order

@@ -14,6 +14,7 @@ public class PC {
         int i = 1;
         for (Component c : components) {
             System.out.println(i + ". " + c.type + ": " + c.componentPrice);
+            i++;
         }
     }
 }

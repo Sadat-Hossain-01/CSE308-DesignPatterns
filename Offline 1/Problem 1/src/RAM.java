@@ -1,9 +1,7 @@
 abstract class RAM extends Component {
-
 }
 
 class RAM2666 extends RAM {
-
 
     @Override
     void setType() {

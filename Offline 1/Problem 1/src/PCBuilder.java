@@ -1,28 +1,19 @@
 abstract class PCBuilder {
     protected PC pc;
 
-    protected abstract void addProcessor();
-
-    protected abstract void addCooler();
-
-    protected abstract void addDVDDrive();
+    protected final void addMotherboard() {
+        pc.addComponent(new Motherboard());
+    }
 
     protected final void addHardDisk() {
         pc.addComponent(new HardDisk());
     }
 
-    protected final void addMotherboard() {
-        pc.addComponent(new Motherboard());
-    }
+    protected abstract void addProcessor();
 
+    protected abstract void addCooler();
 
-    protected final void addGraphicsCard(int memory) {
-        if (memory == 2) {
-            pc.addComponent(new GCard2());
-        } else if (memory == 4) {
-            pc.addComponent(new GCard4());
-        }
-    }
+    protected abstract void addDVDDrive();
 
     protected final void addRAM(int freq) {
         if (freq == 2666) {
@@ -32,10 +23,18 @@ abstract class PCBuilder {
         }
     }
 
+    protected final void addGraphicsCard(int memory) {
+        if (memory == 2) {
+            pc.addComponent(new GCard2());
+        } else if (memory == 4) {
+            pc.addComponent(new GCard4());
+        }
+    }
+
     public final void addBaseComponents() {
-        addProcessor();
         addMotherboard();
         addHardDisk();
+        addProcessor();
         addCooler();
         addDVDDrive();
     }

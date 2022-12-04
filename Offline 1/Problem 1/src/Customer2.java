@@ -43,7 +43,31 @@ public class Customer2 {
                         return;
                     }
                 } else if (c == 'O' || c == 'o') {
-                    System.out.println("You have an ongoing order! Please finish this one first.");
+                    while (true) {
+                        System.out.println("You have an ongoing order! Do you want to add any more PC to this order?");
+                        System.out.println("Press Y if you want to, N otherwise.");
+                        while (true) {
+                            inp = sc.nextLine();
+                            if (inp.length() == 0) continue;
+                            c = inp.charAt(0);
+                            break;
+                        }
+                        if (c == 'Y' || c == 'y') {
+                            break;
+                        }
+                        else if (c == 'N' || c == 'n') {
+                            if (itemCount == 0) {
+                                System.out.println("Sir, you have to order at least one item. Please choose any of your liking.");
+                                break;
+                            } else {
+                                System.out.println("Order closed.");
+                                System.out.println("");
+                                orderOn = false;
+                                return;
+                            }
+                        }
+                        else continue;
+                    }
                 } else if (c < '1' || c > '4') {
                     System.out.println("Please provide a valid input choice between 1 to 4.");
                 } else {
@@ -118,9 +142,13 @@ public class Customer2 {
                 System.out.println("Thanks for visiting us, hope to see you again!");
                 isShopping = false;
                 break;
+            } else if (c == 'e' || c == 'E') {
+                System.out.println("No order is ongoing.");
             } else {
                 System.out.println("Please provide a valid input choice.");
             }
         }
+
+        sc.close();
     }
 }

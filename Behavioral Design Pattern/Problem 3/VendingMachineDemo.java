@@ -13,7 +13,7 @@ public class VendingMachineDemo {
             System.out.println("No. of products in inventory: " + vm.getProductCount());
             System.out.println("======================================================");
             System.out.println("Press the designated buttons for particular choices:");
-            System.out.println("1. Buy a product ($" + VendingMachine.productPrice + ").");
+            System.out.println("1. Pay money to buy a product ($" + VendingMachine.productPrice + ").");
             System.out.println("2. Request a refill of the vending machine.");
             System.out.println("3. Exit system interface.");
 
@@ -22,13 +22,14 @@ public class VendingMachineDemo {
                 continue;
             }
             char c = inp.charAt(0);
-
-            if (c == '1') {
+            if (inp.length() > 1 || c > '3' || c < '1') {
+                System.out.println("Please provide a valid input choice.");
+            }
+            else if (c == '1') {
                 boolean inpOn = true;
-                System.out.println("Pay first please.");
                 long inpAmount = 0;
                 while (inpOn) {
-                    System.out.print("Input your provided amount: ");
+                    System.out.print("Input your payment amount: ");
                     inp = scanner.nextLine();
                     try {
                         inpAmount = Long.parseLong(inp);
@@ -56,12 +57,10 @@ public class VendingMachineDemo {
                 }
                 vm.refill(inpAmount);
             }
-            else if (c == '3') {
+            else {
+                // c = '3'
                 System.out.println("Thanks for your visit. Visit us again!");
                 break;
-            }
-            else {
-                System.out.println("Please provide a valid input choice.");
             }
         }
 

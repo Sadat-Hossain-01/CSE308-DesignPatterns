@@ -13,20 +13,23 @@ public class NonEmptyState extends State{
 
     @Override
     void collectMoney(long amount) {
-        if (amount == VendingMachine.productPrice) {
+        vendingMachine.setCurrentBalance(vendingMachine.getCurrentBalance() + amount);
+        long balance = vendingMachine.getCurrentBalance();
+        if (balance == VendingMachine.productPrice) {
+            vendingMachine.setCurrentBalance(0);
             deliverProduct();
         }
-        else if (amount > VendingMachine.productPrice) {
-            long extra = amount - VendingMachine.productPrice;
+        else if (balance > VendingMachine.productPrice) {
+            long extra = vendingMachine.getCurrentBalance() - VendingMachine.productPrice;
             System.out.println("The product price is $" + VendingMachine.productPrice + ".");
             System.out.println("Returned extra $" + extra + "...");
+            vendingMachine.setCurrentBalance(0);
             deliverProduct();
         }
         else {
-            long more = VendingMachine.productPrice - amount;
+            long more = VendingMachine.productPrice - vendingMachine.getCurrentBalance();
             System.out.println("The product price is $" + VendingMachine.productPrice + ".");
             System.out.println("You have to pay $" + more + " more.");
-            System.out.println("Returned the paid $" + amount + "...");
         }
     }
 }

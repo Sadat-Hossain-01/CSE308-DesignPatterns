@@ -11,6 +11,7 @@ public class VendingMachineDemo {
             System.out.println();
             System.out.println();
             System.out.println("No. of products in inventory: " + vm.getProductCount());
+            System.out.println("Your current balance: $" + vm.getCurrentBalance());
             System.out.println("======================================================");
             System.out.println("Press the designated buttons for particular choices:");
             System.out.println("1. Pay money to buy a product ($" + VendingMachine.productPrice + ").");

@@ -1,6 +1,7 @@
 public class VendingMachine {
     public static final int inventoryCap = 10;
     private int productCount;
+    private long currentBalance;
     public static final long productPrice = 10;
     private State currentState;
     public State soldOutState;
@@ -33,6 +34,12 @@ public class VendingMachine {
 
     public int getProductCount() {
         return productCount;
+    }
+
+    public void setCurrentBalance(long amount) { currentBalance = amount; }
+
+    public long getCurrentBalance() {
+        return currentBalance;
     }
 
     public void setProductCount(int productCount) {

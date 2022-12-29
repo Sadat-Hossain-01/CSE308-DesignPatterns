@@ -1,3 +1,7 @@
+package state;
+
+import machine.VendingMachine;
+
 public abstract class State {
     VendingMachine vendingMachine = null;
     public State(VendingMachine vendingMachine) {
@@ -7,12 +11,12 @@ public abstract class State {
 //    abstract void deliverProduct();
 //    the reason why the above function is not being used is that user can only give money now.
 //    based on that, deliverProduct will be an internal decision, so not every class should have it.
-    abstract void collectMoney(long amount);
+    public abstract void collectMoney(long amount);
 
     // the behavior of refill() method is nearly same be it whatever state
     // since we are allowing refill from empty to almost full - all conditions
     // so better to provide a final implementation in superclass
-    final void refill(int amount) {
+    public final void refill(int amount) {
         if (vendingMachine.getProductCount() < VendingMachine.inventoryCap) {
             vendingMachine.setProductCount(vendingMachine.getProductCount() + amount);
             if (vendingMachine.getProductCount() > VendingMachine.inventoryCap) {

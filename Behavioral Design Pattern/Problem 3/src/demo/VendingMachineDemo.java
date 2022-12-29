@@ -1,4 +1,9 @@
+package demo;
+
+import machine.VendingMachine;
+
 import java.util.Scanner;
+
 
 public class VendingMachineDemo {
     public static Scanner scanner = new Scanner(System.in);

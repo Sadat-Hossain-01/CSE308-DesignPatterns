@@ -2,17 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50756cb4-4a77-47c3-8116-60112554ff9e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Problem 2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Problem 2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Problem 3.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NonEmptyState.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SoldOutState.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/State.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/VendingMachine.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/VendingMachineDemo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NonEmptyState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/NonEmptyState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SoldOutState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/SoldOutState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/State.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/VendingMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/VendingMachine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/VendingMachineDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/demo/VendingMachineDemo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,9 +32,16 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="machine" />
+      <recent name="demo" />
+      <recent name="state" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="VendingMachineDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="VendingMachineDemo" />
+      <option name="MAIN_CLASS_NAME" value="demo.VendingMachineDemo" />
       <module name="Problem 3" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -71,10 +73,23 @@
       <option name="presentableId" value="Default" />
       <updated>1672331396006</updated>
       <workItem from="1672331397871" duration="106000" />
+      <workItem from="1672331584920" duration="175000" />
+      <workItem from="1672332429082" duration="451000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

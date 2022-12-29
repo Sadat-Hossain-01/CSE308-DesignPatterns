@@ -1,3 +1,9 @@
+package machine;
+
+import state.NonEmptyState;
+import state.SoldOutState;
+import state.State;
+
 public class VendingMachine {
     public static final int inventoryCap = 10;
     private int productCount;

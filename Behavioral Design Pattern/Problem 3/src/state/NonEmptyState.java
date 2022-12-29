@@ -1,3 +1,7 @@
+package state;
+
+import machine.VendingMachine;
+
 public class NonEmptyState extends State{
     public NonEmptyState(VendingMachine vendingMachine) {
         super(vendingMachine);
@@ -12,7 +16,7 @@ public class NonEmptyState extends State{
     }
 
     @Override
-    void collectMoney(long amount) {
+    public void collectMoney(long amount) {
         vendingMachine.setCurrentBalance(vendingMachine.getCurrentBalance() + amount);
         long balance = vendingMachine.getCurrentBalance();
         if (balance == VendingMachine.productPrice) {

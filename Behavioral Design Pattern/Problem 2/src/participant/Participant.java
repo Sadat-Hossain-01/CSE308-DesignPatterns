@@ -9,6 +9,5 @@ public abstract class Participant {
     public Participant(Mediator mediator, int id) {
         this.mediator = mediator;
         this.id = id;
-        mediator.subscribe(this);
     }
 }

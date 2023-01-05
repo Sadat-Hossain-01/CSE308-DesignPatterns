@@ -5,12 +5,13 @@ import participant.Examinee;
 import participant.Examiner;
 import participant.Participant;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ExamController implements Mediator {
     private List<Examiner> examinerList;
     private List<Examinee> examineeList;
-    private List<Integer> marks; // local record of marksheet in controller
+    private List<Integer> centralMarksheet; // local record of marksheet in controller
     private List<ExamScript> examScripts;
     private int evalDone = 0; // number of evaluated exam scripts received
 
@@ -32,6 +33,10 @@ public class ExamController implements Mediator {
 
     public void setExamScriptList(List<ExamScript> scripts) {
         this.examScripts = scripts;
+        centralMarksheet = new ArrayList<>();
+        for (int i = 0; i < scripts.size(); i++) {
+            centralMarksheet.add(0);
+        }
     }
 
     private void checkForErrors(ScriptBundle bundle) {
@@ -50,12 +55,14 @@ public class ExamController implements Mediator {
             }
         }
 
-        marks = marksheet; // saving the latest marksheet
+        for (int i = 0; i < marksheet.size(); i++) {
+            centralMarksheet.set(scripts.get(i).getExamineeID() - 1, marksheet.get(i)); // saving the marks in the central marksheet
+        }
     }
 
     private void publishResult() {
         for (int i = 0; i < examineeList.size(); i++) {
-            int mark = marks.get(i);
+            int mark = centralMarksheet.get(i);
             assert mark == examScripts.get(i).getMark();
             System.out.println("\nExam Controller: result sent to student id-" + (i + 1));
             Examinee examinee = examineeList.get(i);
@@ -104,19 +111,19 @@ public class ExamController implements Mediator {
                 System.out.println("\nExam Controller: marks remain same for student-" + examineeID);
             }
             else {
-                int prevMark = marks.get(examineeID - 1);
+                int prevMark = centralMarksheet.get(examineeID - 1);
                 int updatedMark = request.getExamScript().getMark();
                 assert prevMark != updatedMark; // marks must change
                 if (prevMark < updatedMark) {
                     assert request.getRecheckStatus() == SingleScriptRequest.RecheckStatus.DECREASED;
                     // update the mark in central marksheet
-                    marks.set(examineeID - 1, updatedMark);
+                    centralMarksheet.set(examineeID - 1, updatedMark);
                     System.out.println("\nExam Controller: marks decreased for student-" + examineeID);
                 }
                 else {
                     assert request.getRecheckStatus() == SingleScriptRequest.RecheckStatus.INCREASED;
                     // update the mark in central marksheet
-                    marks.set(examineeID - 1, updatedMark);
+                    centralMarksheet.set(examineeID - 1, updatedMark);
                     System.out.println("\nExam Controller: marks increased for student-" + examineeID);
                 }
             }

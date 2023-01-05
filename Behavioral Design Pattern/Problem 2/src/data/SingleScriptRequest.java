@@ -1,11 +1,14 @@
 package data;
 
-public class RecheckRequest extends CheckRequest {
+public class SingleScriptRequest extends CheckRequest {
+    // basically used for rechecking
     private ExamScript examScript;
-    private int previousMark; // in case of change, for showing the previous mark
+    private int examineeID;
     public enum RecheckStatus {
+        PENDING, // recheck is yet to be done
         UNCHANGED,
-        CHANGED
+        INCREASED,
+        DECREASED
     };
     private RecheckStatus recheckStatus;
 
@@ -17,14 +20,6 @@ public class RecheckRequest extends CheckRequest {
         this.examScript = examScript;
     }
 
-    public int getPreviousMark() {
-        return previousMark;
-    }
-
-    public void setPreviousMark(int previousMark) {
-        this.previousMark = previousMark;
-    }
-
     public RecheckStatus getRecheckStatus() {
         return recheckStatus;
     }
@@ -33,8 +28,12 @@ public class RecheckRequest extends CheckRequest {
         this.recheckStatus = recheckStatus;
     }
 
-    public RecheckRequest(ExamScript examScript) {
-        this.examScript = examScript;
-        this.previousMark = examScript.getMark();
+    public int getExamineeID() {
+        return examineeID;
+    }
+
+    public SingleScriptRequest(int examineeID) {
+        this.examineeID = examineeID;
+        this.recheckStatus = RecheckStatus.PENDING;
     }
 }

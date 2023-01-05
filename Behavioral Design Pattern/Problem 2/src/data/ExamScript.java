@@ -7,8 +7,6 @@ public class ExamScript {
     public enum ScriptStatus {
         UNCHECKED, // sent to examiner for the first time
         CHECKED, // examiner checked, sent to controller
-        RECHECK_REQUESTED, // student asked for recheck
-        RECHECK_DONE, // recheck done, but not change
     };
     private ScriptStatus scriptStatus;
 

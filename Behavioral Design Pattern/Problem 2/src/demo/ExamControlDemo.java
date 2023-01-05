@@ -45,12 +45,15 @@ public class ExamControlDemo {
             }
         }
 
+        List<ScriptBundle> bundles = new ArrayList<>(); // bundle for each examiner
+
         // initializing examiners and examinees
         for (int i = 0; i < noOfExaminee; i++) {
             examinees.add(new Examinee(controller, i + 1));
         }
         for (int i = 0; i < noOfExaminee; i++) {
             examiners.add(new Examiner(controller, i + 1));
+            bundles.add(new ScriptBundle());
         }
 
         controller.setExamineeList(examinees);
@@ -59,10 +62,12 @@ public class ExamControlDemo {
         // first create the exam scripts
         List<ExamScript> scripts = new ArrayList<>();
         for (int i = 0; i < noOfExaminee; i++) {
-            scripts.add(new ExamScript(i + 1));
+            ExamScript script = new ExamScript(i + 1);
+            scripts.add(script);
         }
 
-        List<ScriptBundle> bundles = new ArrayList<>(); // bundle for each examiner
+        controller.setExamScriptList(scripts);
+
         // script of student with id (i + 1) will go to examiner with id (i MOD noOfExaminers) + 1
         for (int i = 0; i < noOfExaminee; i++) {
             ExamScript currentScript = scripts.get(i); // student id is i + 1
@@ -79,6 +84,31 @@ public class ExamControlDemo {
             ScriptBundle bundleToBeSent = bundles.get(i);
             BundleCheckRequest request = new BundleCheckRequest(bundleToBeSent, i + 1);
             examiner.sendBundleCheckRequest(request);
+        }
+
+        while (true) {
+            // recheck phase
+            System.out.print("Enter student ID to recheck: (0 to quit)");
+            int studentID = 0;
+            inpon = true;
+            while (inpon) {
+                try {
+                    studentID = scanner.nextInt();
+                    if (studentID == 0) {
+                        System.out.println("Exiting...");
+                        inpon = false;
+                        break;
+                    }
+                    else if (studentID < 0 || studentID > noOfExaminee) throw new Exception();
+                    else inpon = false;
+                } catch (Exception e) {
+                    if (studentID > noOfExaminee) System.out.println("Number of total students is " + noOfExaminee + ".");
+                    System.out.println("Please input a valid number.");
+                }
+            }
+            if (studentID == 0) break;
+            // request the controller to recheck
+            examinees.get(studentID - 1).requestRecheck();
         }
 
         scanner.close();

@@ -4,7 +4,15 @@ import mediator.Mediator;
 
 public abstract class Participant {
     protected Mediator mediator;
-    private int id;
+    protected int id;
+
+    public Mediator getMediator() {
+        return mediator;
+    }
+
+    public int getID() {
+        return id;
+    }
 
     public Participant(Mediator mediator, int id) {
         this.mediator = mediator;

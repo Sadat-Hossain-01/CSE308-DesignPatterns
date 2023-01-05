@@ -13,18 +13,6 @@ public class ScriptBundle {
         return scripts;
     }
 
-    public void setScripts(ArrayList<ExamScript> scripts) {
-        this.scripts = scripts;
-    }
-
-    public int getExaminerID() {
-        return examinerID;  
-    }
-
-    public void setExaminerID(int examinerID) {
-        this.examinerID = examinerID;
-    }
-
     public ArrayList<Integer> getMarks() {
         return marks;
     }
@@ -36,5 +24,10 @@ public class ScriptBundle {
     public void addExamScript(ExamScript examScript) {
         // add a new exam script to the bundle
         scripts.add(examScript);
+    }
+
+    public ScriptBundle() {
+        this.scripts = new ArrayList<>();
+        this.marks = new ArrayList<>();
     }
 }

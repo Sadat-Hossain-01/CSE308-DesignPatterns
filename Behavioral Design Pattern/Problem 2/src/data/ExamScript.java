@@ -4,26 +4,28 @@ public class ExamScript {
     private int examinerID;
     private int examineeID;
     private int mark;
-    public enum ScriptStatus {
-        UNCHECKED, // sent to examiner for the first time
-        CHECKED, // examiner checked, sent to controller
-    };
-    private ScriptStatus scriptStatus;
+
+    public enum ScriptStatus {NOT_CHECKED, CHECKED, RECHECKED};
+    private ScriptStatus status;
+
+    public void setScriptStatus(ScriptStatus status) {
+        this.status = status;
+    }
+
+    public void setExaminerID(int teacherID) {
+        this.examinerID = teacherID;
+    }
+
+    public ScriptStatus getScriptStatus() {
+        return status;
+    }
 
     public int getExaminerID() {
         return examinerID;
     }
 
-    public void setExaminerID(int examinerID) {
-        this.examinerID = examinerID;
-    }
-
     public int getExamineeID() {
         return examineeID;
-    }
-
-    public void setExamineeID(int examineeID) {
-        this.examineeID = examineeID;
     }
 
     public int getMark() {
@@ -34,16 +36,8 @@ public class ExamScript {
         this.mark = actualMark;
     }
 
-    public ScriptStatus getScriptStatus() {
-        return scriptStatus;
-    }
-
-    public void setScriptStatus(ScriptStatus scriptStatus) {
-        this.scriptStatus = scriptStatus;
-    }
-
     public ExamScript(int examineeID) {
         this.examineeID = examineeID;
-        this.scriptStatus = ScriptStatus.UNCHECKED;
+        this.status = ScriptStatus.NOT_CHECKED;
     }
 }

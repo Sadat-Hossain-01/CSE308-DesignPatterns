@@ -25,8 +25,15 @@ public class Examiner extends Participant{
 
     public void sendBundleCheckRequest(BundleCheckRequest request) {
         // so this examiner just received a bundle of scripts to check
-        System.out.println("\nExaminer " + id + ": received a bundle of scripts to check.");
         ScriptBundle bundle = request.getScriptBundle();
+        String str = "";
+        for (int i = 0; i < bundle.getScripts().size(); i++) {
+            str += bundle.getScripts().get(i).getExamineeID();
+            if (i != bundle.getScripts().size() - 1) {
+                str += ", ";
+            }
+        }
+        System.out.println("\nExaminer " + id + ": Received scripts of ID- " + str + " to check.");
         List<ExamScript> scripts = bundle.getScripts();
         List<Integer> marks = bundle.getMarks();
 
@@ -34,7 +41,6 @@ public class Examiner extends Participant{
             // now just evaluating the scripts and placing the mark
             ExamScript currentScript = scripts.get(i);
             currentScript.setMark(getRandomNumber(40, 100)); // mark range from 0 to 100
-            currentScript.setScriptStatus(ExamScript.ScriptStatus.CHECKED);
         }
 
         int mistakeCount = 0; // need to make sure at least one mistake is done
@@ -56,6 +62,7 @@ public class Examiner extends Participant{
                 marks.add(incorrectMark);
                 mistakeCount++;
             }
+            currentScript.setScriptStatus(ExamScript.ScriptStatus.CHECKED);
         }
         if (mistakeCount == 0) {
             // if no mistake is done, change the first mark
@@ -63,12 +70,12 @@ public class Examiner extends Participant{
         }
 
         // now send the bundle back to the controller
-        System.out.println("\nExaminer " + id + ": finished checking scripts and sent marksheet to controller.");
+        System.out.println("Examiner " + id + ": Finished checking scripts of ID-" + str + " and sent marksheet to controller.");
         mediator.sendMessage(this, request);
     }
 
     public void sendRecheckRequest(SingleScriptRequest request) {
-        if (request.getExamScript() == null) {
+        if (request.getExamScript() == null || request.getExamScript().getScriptStatus() == ExamScript.ScriptStatus.RECHECKED) {
             // this should not happen anyway
             assert false;
         }
@@ -76,7 +83,7 @@ public class Examiner extends Participant{
         int num = random.nextInt() % 10;
         ExamScript script = request.getExamScript();
         int mark = script.getMark();
-        if (num % 3 == 0 && mark <= 98 && mark >= 2) { // giving a 40% chance of result getting changed
+        if (num % 3 == 0 && mark <= 98 && mark >= 40) { // giving a 40% chance of result getting changed
             if (num == 0) {
                 // mark will decrease
                 script.setMark((script.getMark() - 2 + 101) % 101);
@@ -92,9 +99,9 @@ public class Examiner extends Participant{
             // mark will remain the same
             request.setRecheckStatus(SingleScriptRequest.RecheckStatus.UNCHANGED);
         }
-
+        script.setScriptStatus(ExamScript.ScriptStatus.RECHECKED);
         // now send the request back to the controller
-        System.out.println("\nExaminer " + id + ": finished rechecking script of student-" + script.getExamineeID()
+        System.out.println("Examiner " + id + ": Finished rechecking script of student ID-" + script.getExamineeID()
                 + " and sent result to controller.");
         mediator.sendMessage(this, request);
     }

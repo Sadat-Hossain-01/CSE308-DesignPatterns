@@ -73,6 +73,7 @@ public class ExamControlDemo {
             ExamScript currentScript = scripts.get(i); // student id is i + 1
             int teacherID = (i % noOfExaminer) + 1;
             // bundle for teacher with id j is in index j - 1
+            currentScript.setExaminerID(teacherID);
             ScriptBundle desiredBundle = bundles.get(teacherID - 1);
             desiredBundle.addExamScript(currentScript);
         }
@@ -88,7 +89,7 @@ public class ExamControlDemo {
 
         while (true) {
             // recheck phase
-            System.out.print("Enter student ID to recheck: (0 to quit)");
+            System.out.print("\nEnter student ID to recheck: (0 to quit) ");
             int studentID = 0;
             inpon = true;
             while (inpon) {

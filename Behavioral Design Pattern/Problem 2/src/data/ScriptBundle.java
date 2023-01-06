@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 public class ScriptBundle {
     private ArrayList<ExamScript> scripts; // the mark contained in each script is the actual mark
-    private int examinerID;
     private ArrayList<Integer> marks; // this is the list of marks sent to controller
 
     public ArrayList<ExamScript> getScripts() {
@@ -15,10 +14,6 @@ public class ScriptBundle {
 
     public ArrayList<Integer> getMarks() {
         return marks;
-    }
-
-    public void setMarks(ArrayList<Integer> marks) {
-        this.marks = marks;
     }
 
     public void addExamScript(ExamScript examScript) {

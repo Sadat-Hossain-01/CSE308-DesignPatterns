@@ -25,28 +25,19 @@ public class PremiumUser extends Observer {
 
         System.out.println(userName + " (Premium User): got notified");
 
-        Scanner scanner = new Scanner(System.in);
         int choice = 0;
         boolean inputOn = true;
 
         if (previousState == ABCCompany.State.OPERATIONAL) {
             if (currentState == ABCCompany.State.PARTIALLY_DOWN) {
                 // ask if the user wants to use two servers or from one (DEF)
-                System.out.println("The system is partially down. Which option do you want to use?");
-                System.out.println("1. Use two servers (partially ABC, partially DEF)");
-                System.out.println("2. Use one server (DEF)");
-
                 while (inputOn) {
-                    try {
-                        choice = scanner.nextInt();
-                        if (choice == 1 || choice == 2) {
-                            inputOn = false;
-                        } else {
-                            throw new Exception();
-                        }
-                    } catch (Exception e) {
-                        System.out.println("Please enter a valid choice.");
-                        continue;
+                    System.out.println("The system is partially down. Which option do you want to choose?");
+                    System.out.println("1. Use two servers (partially ABC, partially DEF)");
+                    System.out.println("2. Use one server (DEF)");
+                    choice = takeInput(1, 2);
+                    if (choice != -1) {
+                        inputOn = false;
                     }
                 }
 
@@ -78,8 +69,6 @@ public class PremiumUser extends Observer {
         }
 
         showState();
-
-        scanner.close();
     }
 
     @Override

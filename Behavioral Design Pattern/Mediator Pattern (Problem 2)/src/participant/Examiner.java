@@ -17,9 +17,6 @@ public class Examiner extends Participant{
     private int getRandomNumber(int l, int r) {
         Random random = new Random();
         int num = random.nextInt(r - l + 1);
-        if (num < 0) {
-            num = -num;
-        }
         return num + l;
     }
 
@@ -79,12 +76,11 @@ public class Examiner extends Participant{
             // this should not happen anyway
             assert false;
         }
-        Random random = new Random();
-        int num = random.nextInt() % 10;
+        int num = getRandomNumber(0, 9);
         ExamScript script = request.getExamScript();
         int mark = script.getMark();
-        if (num % 3 == 0 && mark <= 98 && mark >= 40) { // giving a 40% chance of result getting changed
-            if (num == 0) {
+        if (num % 3 == 0 && mark <= 98 && mark >= 40) { // giving a 40% chance of result getting changed, 20% increase, 20% decrease
+            if (num == 0 || num == 9) {
                 // mark will decrease
                 script.setMark((script.getMark() - 2 + 101) % 101);
                 request.setRecheckStatus(SingleScriptRequest.RecheckStatus.DECREASED);

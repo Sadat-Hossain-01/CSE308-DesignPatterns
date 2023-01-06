@@ -12,8 +12,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ExamControlDemo {
-    public static Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner;
+
     public static void main(String[] args) {
+        scanner = new Scanner(System.in);
+
         ExamController controller = new ExamController();
         List<Examiner> examiners = new ArrayList<>();
         List<Examinee> examinees = new ArrayList<>();
@@ -40,7 +43,8 @@ public class ExamControlDemo {
                 if (noOfExaminer <= 0 || noOfExaminer > noOfExaminee) throw new Exception();
                 else inpon = false;
             } catch (Exception e) {
-                if (noOfExaminer > noOfExaminee) System.out.println("Number of examiners should not be more than that of examinees.");
+                if (noOfExaminer > noOfExaminee)
+                    System.out.println("Number of examiners should not be more than that of examinees.");
                 else System.out.println("Please input a valid number.");
             }
         }
@@ -99,11 +103,11 @@ public class ExamControlDemo {
                         System.out.println("Exiting...");
                         inpon = false;
                         break;
-                    }
-                    else if (studentID < 0 || studentID > noOfExaminee) throw new Exception();
+                    } else if (studentID < 0 || studentID > noOfExaminee) throw new Exception();
                     else inpon = false;
                 } catch (Exception e) {
-                    if (studentID > noOfExaminee) System.out.println("Number of total students is " + noOfExaminee + ".");
+                    if (studentID > noOfExaminee)
+                        System.out.println("Number of total students is " + noOfExaminee + ".");
                     System.out.println("Please input a valid number.");
                 }
             }

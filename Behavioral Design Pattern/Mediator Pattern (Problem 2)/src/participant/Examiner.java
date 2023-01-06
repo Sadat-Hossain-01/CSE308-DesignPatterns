@@ -9,7 +9,7 @@ import mediator.Mediator;
 import java.util.List;
 import java.util.Random;
 
-public class Examiner extends Participant{
+public class Examiner extends Participant {
     public Examiner(Mediator mediator, int id) {
         super(mediator, id);
     }
@@ -84,14 +84,12 @@ public class Examiner extends Participant{
                 // mark will decrease
                 script.setMark((script.getMark() - 2 + 101) % 101);
                 request.setRecheckStatus(SingleScriptRequest.RecheckStatus.DECREASED);
-            }
-            else {
+            } else {
                 // mark will increase
                 script.setMark((script.getMark() + 2) % 101);
                 request.setRecheckStatus(SingleScriptRequest.RecheckStatus.INCREASED);
             }
-        }
-        else {
+        } else {
             // mark will remain the same
             request.setRecheckStatus(SingleScriptRequest.RecheckStatus.UNCHANGED);
         }

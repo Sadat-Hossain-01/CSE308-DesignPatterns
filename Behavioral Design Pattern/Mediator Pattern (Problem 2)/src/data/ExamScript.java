@@ -5,7 +5,8 @@ public class ExamScript {
     private int examineeID;
     private int mark;
 
-    public enum ScriptStatus {NOT_CHECKED, CHECKED, RECHECKED};
+    public enum ScriptStatus {NOT_CHECKED, CHECKED, RECHECKED}
+
     private ScriptStatus status;
 
     public void setScriptStatus(ScriptStatus status) {

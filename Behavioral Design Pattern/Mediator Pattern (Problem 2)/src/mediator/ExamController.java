@@ -83,13 +83,12 @@ public class ExamController implements Mediator {
             // check for errors in this bundle
             checkForErrors(((BundleCheckRequest) checkRequest).getScriptBundle());
 
-            evalDone += ((BundleCheckRequest)checkRequest).getScriptBundle().getScripts().size();
+            evalDone += ((BundleCheckRequest) checkRequest).getScriptBundle().getScripts().size();
             if (evalDone == examineeList.size()) {
                 // all scripts have been evaluated
                 publishResult();
             }
-        }
-        else if (from instanceof Examinee && checkRequest instanceof SingleScriptRequest) {
+        } else if (from instanceof Examinee && checkRequest instanceof SingleScriptRequest) {
             // received recheck request, now need to forward it to examiner
             // first find the exam script of the student, and assign it to the request
             System.out.println("Exam Controller: Received recheck request from student ID-" + from.getID() + ".");
@@ -108,8 +107,7 @@ public class ExamController implements Mediator {
             Examiner examiner = examinerList.get(examinerID - 1);
             System.out.println("Exam Controller: Forwarded recheck request to examiner " + examinerID + ".");
             examiner.sendRecheckRequest(request);
-        }
-        else if (from instanceof Examiner && checkRequest instanceof SingleScriptRequest) {
+        } else if (from instanceof Examiner && checkRequest instanceof SingleScriptRequest) {
             // received response of recheck request from examiner
             SingleScriptRequest request = (SingleScriptRequest) checkRequest;
             int examineeID = request.getExamineeID();
@@ -120,8 +118,7 @@ public class ExamController implements Mediator {
 
             if (request.getRecheckStatus() == SingleScriptRequest.RecheckStatus.UNCHANGED) {
                 System.out.println("Exam Controller: No change of mark for student ID-" + examineeID + ".");
-            }
-            else {
+            } else {
                 int prevMark = centralMarksheet.get(examineeID - 1);
                 int updatedMark = request.getExamScript().getMark();
                 assert prevMark != updatedMark; // marks must change
@@ -131,8 +128,7 @@ public class ExamController implements Mediator {
                     centralMarksheet.set(examineeID - 1, updatedMark);
                     System.out.println("Exam Controller: Marks increased for student ID-" + examineeID + "."
                             + " Previous mark: " + prevMark + ", Updated mark: " + updatedMark + ".");
-                }
-                else {
+                } else {
                     assert request.getRecheckStatus() == SingleScriptRequest.RecheckStatus.DECREASED;
                     // update the mark in central marksheet
                     centralMarksheet.set(examineeID - 1, updatedMark);

@@ -4,12 +4,14 @@ public class SingleScriptRequest extends CheckRequest {
     // basically used for rechecking
     private ExamScript examScript;
     private int examineeID;
+
     public enum RecheckStatus {
         PENDING, // recheck is yet to be done
         UNCHANGED,
         INCREASED,
         DECREASED
-    };
+    }
+
     private RecheckStatus recheckStatus;
 
     public ExamScript getExamScript() {

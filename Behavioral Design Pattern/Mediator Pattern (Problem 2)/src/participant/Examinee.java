@@ -15,7 +15,7 @@ public class Examinee extends Participant{
 
     public void requestRecheck() {
         SingleScriptRequest recheckRequest = new SingleScriptRequest(id);
-        System.out.println("\nStudent " + id + ": Requesting for a recheck.");
+        System.out.println("Student " + id + ": Requesting for a recheck.");
         mediator.sendMessage(this, recheckRequest);
     }
 

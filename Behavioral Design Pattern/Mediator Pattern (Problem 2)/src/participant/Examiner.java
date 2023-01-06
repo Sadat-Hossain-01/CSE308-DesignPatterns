@@ -70,7 +70,7 @@ public class Examiner extends Participant{
         }
 
         // now send the bundle back to the controller
-        System.out.println("Examiner " + id + ": Finished checking scripts of ID-" + str + " and sent marksheet to controller.");
+        System.out.println("Examiner " + id + ": Finished checking script(s) of ID-" + str + " and sent marksheet to controller.");
         mediator.sendMessage(this, request);
     }
 

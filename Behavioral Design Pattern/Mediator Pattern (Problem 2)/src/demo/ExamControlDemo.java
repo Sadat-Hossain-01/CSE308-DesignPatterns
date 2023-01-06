@@ -21,8 +21,8 @@ public class ExamControlDemo {
         int noOfExaminer = 0, noOfExaminee = 0;
         boolean inpon = true;
 
-        System.out.print("Enter number of examinees: ");
         while (inpon) {
+            System.out.print("Enter number of examinees: ");
             try {
                 noOfExaminee = scanner.nextInt();
                 if (noOfExaminee <= 0) throw new Exception();
@@ -33,8 +33,8 @@ public class ExamControlDemo {
         }
 
         inpon = true;
-        System.out.print("Enter number of examiners: ");
         while (inpon) {
+            System.out.print("Enter number of examiners: ");
             try {
                 noOfExaminer = scanner.nextInt();
                 if (noOfExaminer <= 0 || noOfExaminer > noOfExaminee) throw new Exception();
@@ -89,10 +89,10 @@ public class ExamControlDemo {
 
         while (true) {
             // recheck phase
-            System.out.print("\nEnter student ID to recheck: (0 to quit) ");
             int studentID = 0;
             inpon = true;
             while (inpon) {
+                System.out.print("\nEnter student ID to recheck: (0 to quit) ");
                 try {
                     studentID = scanner.nextInt();
                     if (studentID == 0) {

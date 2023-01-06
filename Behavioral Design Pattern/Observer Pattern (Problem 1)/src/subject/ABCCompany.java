@@ -9,12 +9,18 @@ public class ABCCompany implements Subject {
     private List<Observer> observerList;
 
     public enum State {
-      OPERATIONAL,
-      PARTIALLY_DOWN,
-      FULLY_DOWN
-    };
+        OPERATIONAL,
+        PARTIALLY_DOWN,
+        FULLY_DOWN
+    }
+
     private State previousState;
     private State currentState;
+
+    public ABCCompany() {
+        observerList = new ArrayList<>();
+        previousState = currentState = State.OPERATIONAL;
+    }
 
     public State getCurrentState() {
         return currentState;
@@ -24,9 +30,11 @@ public class ABCCompany implements Subject {
         return previousState;
     }
 
-    public ABCCompany() {
-        observerList = new ArrayList<>();
-        previousState = currentState = State.OPERATIONAL;
+    public void setCurrentState(State state) {
+        this.previousState = this.currentState;
+        this.currentState = state;
+
+        notifyAllObservers();
     }
 
     @Override
@@ -41,6 +49,8 @@ public class ABCCompany implements Subject {
 
     @Override
     public void notifyAllObservers() {
-
+        for (Observer observer : observerList) {
+            observer.notifyObserver();
+        }
     }
 }

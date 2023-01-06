@@ -7,33 +7,43 @@ import java.util.Scanner;
 public abstract class Observer {
     protected ABCCompany server; // protected as we want to access it from the inherited classes (users)
     protected String userName;
+    protected static Scanner scanner;
 
     public Observer(ABCCompany server, String userName) {
         this.server = server;
         this.userName = userName;
+        scanner = new Scanner(System.in); // for all usages in this class
         server.subscribe(this);
+    }
+
+    public String getUserName() {
+        return userName;
     }
 
     public abstract void notifyObserver();
 
-    protected abstract void showState(); // protected because this method is only for use within the subclasses, external classes have nothing to do with it
-
-    protected int takeInput(int l, int r) { // will need this method in different cases for taking inputs
+    protected int takeIntInput(int l, int r) { // will need this method in different cases for taking inputs
         // [l, r] is the input choice range
-        Scanner scanner = new Scanner(System.in);
         int choice = 0;
+        String input = "";
 
-        try {
-            choice = scanner.nextInt();
-            if (choice > r || choice < l) {
-                throw new Exception();
+        while (true) {
+            try {
+                input = scanner.nextLine();
+                if (input.isEmpty()) throw new Exception();
+                else break;
+            } catch (Exception e) {
             }
-        } catch (Exception e) {
-            System.out.println("Please enter a valid choice.");
-            choice = -1; // make sure this -1 is outside the valid choice range
         }
 
-        scanner.close();
+        try {
+            choice = Integer.parseInt(input);
+            if (choice < l || choice > r) throw new Exception();
+        } catch (Exception e) {
+            System.out.println("Please enter a valid choice.");
+            choice = -1;
+        }
+
         return choice;
     }
 }

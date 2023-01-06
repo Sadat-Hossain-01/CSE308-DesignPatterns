@@ -2,20 +2,12 @@ package observers;
 
 import subject.ABCCompany;
 
-import java.util.Scanner;
-
 public class PremiumUser extends Observer {
-    public enum PremiumUserState {
-        FULLY_ABC,
-        ABC_DEF,
-        FULLY_DEF
-    }
-
-    private PremiumUserState premiumState;
+    private boolean twoServer;
 
     public PremiumUser(ABCCompany server, String userName) {
         super(server, userName);
-        this.premiumState = PremiumUserState.FULLY_ABC;
+        twoServer = false;
     }
 
     @Override
@@ -23,7 +15,9 @@ public class PremiumUser extends Observer {
         ABCCompany.State currentState = server.getCurrentState();
         ABCCompany.State previousState = server.getPreviousState();
 
-        System.out.println(userName + " (Premium User): got notified");
+        System.out.println("\n" + this);
+        System.out.println("======================================================");
+        System.out.println("Got notified. Current State: " + currentState);
 
         int choice = 0;
         boolean inputOn = true;
@@ -35,53 +29,53 @@ public class PremiumUser extends Observer {
                     System.out.println("The system is partially down. Which option do you want to choose?");
                     System.out.println("1. Use two servers (partially ABC, partially DEF)");
                     System.out.println("2. Use one server (DEF)");
-                    choice = takeInput(1, 2);
+                    choice = takeIntInput(1, 2);
                     if (choice != -1) {
                         inputOn = false;
                     }
                 }
 
                 if (choice == 1) {
-                    this.premiumState = PremiumUserState.ABC_DEF;
+                    twoServer = true;
+                    System.out.println("Getting served by both ABC and DEF company");
                 } else {
-                    this.premiumState = PremiumUserState.FULLY_DEF;
+                    twoServer = false;
+                    System.out.println("Full service being given by DEF company");
                 }
 
             } else if (currentState == ABCCompany.State.FULLY_DOWN) {
                 // full service will be provided by DEF company now
-                this.premiumState = PremiumUserState.FULLY_DEF;
+                twoServer = false;
+                System.out.println("Full service being given by DEF company");
             }
         } else if (previousState == ABCCompany.State.PARTIALLY_DOWN) {
             if (currentState == ABCCompany.State.OPERATIONAL) {
                 // nothing will happen
+                System.out.println("No change in status");
             } else if (currentState == ABCCompany.State.FULLY_DOWN) {
                 // if user was using both servers, shift all to DEF. otherwise keep same
-                if (premiumState == PremiumUserState.ABC_DEF) {
-                    premiumState = PremiumUserState.FULLY_DEF;
+                if (twoServer) {
+                    twoServer = false;
+                    System.out.println("All service got shifted to DEF company");
+                } else {
+                    System.out.println("No change in status");
                 }
             }
         } else if (previousState == ABCCompany.State.FULLY_DOWN) {
             if (currentState == ABCCompany.State.OPERATIONAL) {
                 // nothing will happen
+                System.out.println("No change in status");
             } else if (currentState == ABCCompany.State.PARTIALLY_DOWN) {
                 // nothing will happen
+                System.out.println("No change in status");
             }
         }
 
-        showState();
+        System.out.print("\n");
     }
 
     @Override
-    protected void showState() {
-        if (premiumState == PremiumUserState.FULLY_ABC) {
-            System.out.println(userName + " (Premium User): using ABC server completely");
-        }
-        else if (premiumState == PremiumUserState.ABC_DEF) {
-            System.out.println(userName + " (Premium User): using partially from both ABC and DEF servers");
-        }
-        else if (premiumState == PremiumUserState.FULLY_DEF) {
-            System.out.println(userName + " (Premium User): using DEF server completely");
-        }
+    public String toString() {
+        return userName + "(Premium User)";
     }
-
 }

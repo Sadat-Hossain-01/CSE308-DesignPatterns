@@ -124,26 +124,11 @@ public class ServerDemo {
         } while (choice == -1);
 
         if (choice == 1) {
-            if (server.getCurrentState() == ABCCompany.State.OPERATIONAL) {
-                System.out.println("Server is already operational.");
-            } else {
-                System.out.println("Server is now operational.");
-                server.setCurrentState(ABCCompany.State.OPERATIONAL);
-            }
+            server.setCurrentState(ABCCompany.State.OPERATIONAL);
         } else if (choice == 2) {
-            if (server.getCurrentState() == ABCCompany.State.PARTIALLY_DOWN) {
-                System.out.println("Server is already partially down.");
-            } else {
-                System.out.println("Server is now partially down.");
-                server.setCurrentState(ABCCompany.State.PARTIALLY_DOWN);
-            }
+            server.setCurrentState(ABCCompany.State.PARTIALLY_DOWN);
         } else {
-            if (server.getCurrentState() == ABCCompany.State.FULLY_DOWN) {
-                System.out.println("Server is already fully down.");
-            } else {
-                System.out.println("Server is now fully down.");
-                server.setCurrentState(ABCCompany.State.FULLY_DOWN);
-            }
+            server.setCurrentState(ABCCompany.State.FULLY_DOWN);
         }
     }
 

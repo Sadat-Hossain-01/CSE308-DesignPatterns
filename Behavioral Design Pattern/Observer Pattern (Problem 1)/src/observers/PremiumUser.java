@@ -15,9 +15,7 @@ public class PremiumUser extends Observer {
         ABCCompany.State currentState = server.getCurrentState();
         ABCCompany.State previousState = server.getPreviousState();
 
-        System.out.println("\n" + this);
-        System.out.println("======================================================");
-        System.out.println("Got notified. Current State: " + currentState);
+        showReceivingMessage(currentState.toString());
 
         int choice = 0;
         boolean inputOn = true;

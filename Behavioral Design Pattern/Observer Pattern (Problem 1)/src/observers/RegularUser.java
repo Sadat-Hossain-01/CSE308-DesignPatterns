@@ -18,7 +18,7 @@ public class RegularUser extends Observer {
         // of user usages, meaning it would need knowledge of the observer classes, which is a violation of the observer
         // pattern. Another way to think about it is that there might be some timestamp attached to every user, in which
         // the service start time gets tracked, from there the bill can be automatically calculated. But since the question
-        // just asks to generate a random bill, that is what we are doing here.
+        // just asks to generate a random bill, that is what we are doing.
         Random random = new Random();
         return random.nextInt(r - l + 1) + l;
     }
@@ -28,9 +28,7 @@ public class RegularUser extends Observer {
         ABCCompany.State currentState = server.getCurrentState();
         ABCCompany.State previousState = server.getPreviousState();
 
-        System.out.println("\n" + this);
-        System.out.println("======================================================");
-        System.out.println("Got notified. Current State: " + currentState);
+        showReceivingMessage(currentState.toString());
 
         int choice = 0;
         boolean inputOn = true;
@@ -43,7 +41,6 @@ public class RegularUser extends Observer {
                     System.out.println("1. Continue with limited functionality");
                     System.out.println("2. Pay $20/hour to enjoy full functionality taking service from DEF company");
                     choice = takeIntInput(1, 2);
-                    System.out.println("Choice is " + choice);
                     if (choice != -1) {
                         inputOn = false;
                     }

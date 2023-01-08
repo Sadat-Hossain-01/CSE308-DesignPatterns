@@ -33,8 +33,8 @@ public class ABCCompany implements Subject {
     public void setCurrentState(State state) {
         this.previousState = this.currentState;
         this.currentState = state;
-
-        notifyAllObservers();
+        showStateUpdateMessage();
+        if (currentState != previousState) notifyAllObservers();
     }
 
     @Override
@@ -51,6 +51,21 @@ public class ABCCompany implements Subject {
     public void notifyAllObservers() {
         for (Observer observer : observerList) {
             observer.notifyObserver();
+        }
+    }
+
+    private void showStateUpdateMessage() {
+        String also = "";
+        if (currentState == previousState)
+            also = "already";
+        else
+            also = "now";
+        if (currentState == State.OPERATIONAL) {
+            System.out.println("Server is " + also + " operational.");
+        } else if (currentState == State.PARTIALLY_DOWN) {
+            System.out.println("Server is " + also + " partially down.");
+        } else if (currentState == State.FULLY_DOWN) {
+            System.out.println("Server is " + also + " fully down.");
         }
     }
 }

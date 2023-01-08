@@ -27,14 +27,9 @@ public abstract class Observer {
         int choice = 0;
         String input = "";
 
-        while (true) {
-            try {
-                input = scanner.nextLine();
-                if (input.isEmpty()) throw new Exception();
-                else break;
-            } catch (Exception e) {
-            }
-        }
+        do {
+            input = scanner.nextLine();
+        } while (input.isEmpty());
 
         try {
             choice = Integer.parseInt(input);
@@ -45,5 +40,11 @@ public abstract class Observer {
         }
 
         return choice;
+    }
+
+    protected void showReceivingMessage(String currentState) {
+        System.out.println("\n" + this);
+        System.out.println("======================================================");
+        System.out.println("Got notified. Current State: " + currentState);
     }
 }

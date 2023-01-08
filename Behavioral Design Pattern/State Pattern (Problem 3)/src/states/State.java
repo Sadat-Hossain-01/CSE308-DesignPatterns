@@ -2,8 +2,6 @@ package states;
 
 import machine.VendingMachine;
 
-import java.util.Scanner;
-
 public abstract class State {
     protected VendingMachine vendingMachine;
 
@@ -19,13 +17,18 @@ public abstract class State {
 
     public void cancelPayment() { // writing it here because same behavior for all the states, cancel the full payment and return
         int currentBalance = vendingMachine.getCurrentBalance();
-        System.out.println("Returned $" + currentBalance + ".");
-        vendingMachine.setCurrentBalance(0);
+        if (currentBalance > 0) {
+            System.out.println("Returned $" + currentBalance + ".");
+            vendingMachine.setCurrentBalance(0);
+        }
+        else {
+            System.out.println("You do not have any money to return.");
+        }
     }
 
     protected void handleInvalidRefillRequest() { // refill method is same for 3 of the 4 states, so keeping a separate protected method for it
         assert !vendingMachine.isMachineEmpty();
-        System.out.println("Sorry, there is already product in the inventory. Please consider buying them first.");
+        System.out.println("There is already product in the inventory. Please consider buying them first.");
     }
 
     protected void handleUnnecessaryPayment(int amount) {
@@ -33,7 +36,7 @@ public abstract class State {
         System.out.println("Returned the paid $" + amount + "...");
     }
 
-    protected void dispenseAProduct() {
+    protected void dispenseSingleProduct() {
         System.out.println("Delivered the product...");
         vendingMachine.decrementProductCount();
         vendingMachine.setCurrentBalance(vendingMachine.getCurrentBalance() - vendingMachine.productPrice);

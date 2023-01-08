@@ -19,7 +19,7 @@ public class EqualMoneyState extends State {
 
     @Override
     public void deliverProduct() {
-        dispenseAProduct();
+        dispenseSingleProduct();
         if (vendingMachine.isMachineEmpty()) vendingMachine.setCurrentState(vendingMachine.getSoldOutState());
         else vendingMachine.setCurrentState(vendingMachine.getLessMoneyState());
     }

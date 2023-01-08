@@ -19,16 +19,9 @@ public class MoreMoneyState extends State {
 
     @Override
     public void deliverProduct() {
-        dispenseAProduct();
-        int newBalance = vendingMachine.getCurrentBalance();
-        int price = vendingMachine.productPrice;
-        if (vendingMachine.isMachineEmpty()) vendingMachine.setCurrentState(vendingMachine.getSoldOutState());
-        else if (newBalance > price) { // might still have more money than product price in account
-            vendingMachine.setCurrentState(vendingMachine.getMoreMoneyState());
-        } else if (newBalance == price) {
-            vendingMachine.setCurrentState(vendingMachine.getEqualMoneyState());
-        } else {
-            vendingMachine.setCurrentState(vendingMachine.getLessMoneyState());
-        }
+        System.out.println("Returned the extra $" + (vendingMachine.getCurrentBalance() - vendingMachine.productPrice) + "...");
+        vendingMachine.setCurrentBalance(vendingMachine.productPrice);
+        dispenseSingleProduct();
+        vendingMachine.setCurrentState(vendingMachine.getLessMoneyState());
     }
 }

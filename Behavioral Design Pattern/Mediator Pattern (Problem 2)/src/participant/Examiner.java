@@ -72,10 +72,7 @@ public class Examiner extends Participant {
     }
 
     public void sendRecheckRequest(SingleScriptRequest request) {
-        if (request.getExamScript() == null || request.getExamScript().getScriptStatus() == ExamScript.ScriptStatus.RECHECKED) {
-            // this should not happen anyway
-            assert false;
-        }
+        assert request.getExamScript() != null && request.getExamScript().getScriptStatus() != ExamScript.ScriptStatus.RECHECKED;
         int num = getRandomNumber(0, 9);
         ExamScript script = request.getExamScript();
         int mark = script.getMark();

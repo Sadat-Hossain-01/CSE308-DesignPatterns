@@ -3,30 +3,25 @@ package machine;
 import states.*;
 
 public class VendingMachine {
-    public static final int productPrice = 10;
-    public static final int inventoryCap = 10;
+    public final int productPrice = 10;
+    public final int inventoryCap = 10;
     private int productCount;
     private int currentBalance;
     private State currentState;
-    public State needMoneyState;
-    public State hasMoreMoneyState;
-    public State soldOutState;
-    public State productSoldState;
+    private State lessMoneyState;
+    private State moreMoneyState;
+    private State soldOutState;
+    private State equalMoneyState;
 
     public VendingMachine() {
-        needMoneyState = new NeedMoneyState(this);
-        hasMoreMoneyState = new HasMoreMoneyState(this);
+        lessMoneyState = new LessMoneyState(this);
+        moreMoneyState = new MoreMoneyState(this);
         soldOutState = new SoldOutState(this);
-        productSoldState = new ProductSoldState(this);
+        equalMoneyState = new EqualMoneyState(this);
 
         this.productCount = inventoryCap;
         this.currentBalance = 0;
-        if (productCount > 0) {
-            currentState = needMoneyState;
-        }
-        else {
-            currentState = soldOutState;
-        }
+        this.currentState = lessMoneyState;
     }
 
     public int getCurrentBalance() {
@@ -37,11 +32,55 @@ public class VendingMachine {
         this.currentBalance = balance;
     }
 
+    public boolean isMachineEmpty() {
+        return productCount == 0;
+    }
+
+    public void decrementProductCount() {
+        this.productCount--;
+    }
+
     public int getProductCount() {
         return productCount;
     }
 
+    public void refillProductCount() {
+        this.productCount = inventoryCap;
+    }
+
     public void setCurrentState(State state) {
         this.currentState = state;
+    }
+
+    public State getLessMoneyState() {
+        return lessMoneyState;
+    }
+
+    public State getMoreMoneyState() {
+        return moreMoneyState;
+    }
+
+    public State getSoldOutState() {
+        return soldOutState;
+    }
+
+    public State getEqualMoneyState() {
+        return equalMoneyState;
+    }
+
+    public void collectMoney(int amount) {
+        currentState.collectMoney(amount);
+    }
+
+    public void deliverProduct() {
+        currentState.deliverProduct();
+    }
+
+    public void cancelPayment() {
+        currentState.cancelPayment();
+    }
+
+    public void refill() {
+        currentState.refill();
     }
 }

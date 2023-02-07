@@ -1,13 +1,16 @@
 public abstract class Decorator extends Coffee {
-}
+    protected Coffee coffee;
 
-class ExtraCoffeeBeans extends Decorator {
-    private Coffee coffee;
-
-    public ExtraCoffeeBeans(Coffee coffee) {
+    public Decorator(Coffee coffee) {
         this.coffee = coffee;
         this.name = coffee.name;
         this.ingredients = coffee.ingredients;
+    }
+}
+
+class ExtraCoffeeBeans extends Decorator {
+    public ExtraCoffeeBeans(Coffee coffee) {
+        super(coffee);
         this.ingredients.add("Ground Coffee Beans");
     }
 
@@ -17,12 +20,8 @@ class ExtraCoffeeBeans extends Decorator {
 }
 
 class ExtraMilk extends Decorator {
-    private Coffee coffee;
-
     public ExtraMilk(Coffee coffee) {
-        this.coffee = coffee;
-        this.name = coffee.name;
-        this.ingredients = coffee.ingredients;
+        super(coffee);
         this.ingredients.add("Milk");
     }
 
@@ -32,12 +31,8 @@ class ExtraMilk extends Decorator {
 }
 
 class ExtraDairyCream extends Decorator {
-    private Coffee coffee;
-
     public ExtraDairyCream(Coffee coffee) {
-        this.coffee = coffee;
-        this.name = coffee.name;
-        this.ingredients = coffee.ingredients;
+        super(coffee);
         this.ingredients.add("Dairy Cream");
     }
 
@@ -47,12 +42,8 @@ class ExtraDairyCream extends Decorator {
 }
 
 class ExtraCinnamonPowder extends Decorator {
-    private Coffee coffee;
-
     public ExtraCinnamonPowder(Coffee coffee) {
-        this.coffee = coffee;
-        this.name = coffee.name;
-        this.ingredients = coffee.ingredients;
+        super(coffee);
         this.ingredients.add("Cinnamon Powder");
     }
 
@@ -62,12 +53,8 @@ class ExtraCinnamonPowder extends Decorator {
 }
 
 class ExtraChocolateSauce extends Decorator {
-    private Coffee coffee;
-
     public ExtraChocolateSauce(Coffee coffee) {
-        this.coffee = coffee;
-        this.name = coffee.name;
-        this.ingredients = coffee.ingredients;
+        super(coffee);
         this.ingredients.add("Chocolate Sauce");
     }
 

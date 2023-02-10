@@ -4,7 +4,6 @@ import java.util.List;
 public class Company implements Component {
     private String name;
     private List<Manager> managers = new ArrayList<>();
-    private int numberOfProjects;
 
     public Company(String name) {
         this.name = name;
@@ -25,7 +24,7 @@ public class Company implements Component {
     @Override
     public void showDetails() {
         System.out.println("Company Name: " + name);
-        System.out.println("Number of Projects: " + numberOfProjects);
+        System.out.println("Number of Projects: " + managers.size());
     }
 
     @Override
@@ -45,7 +44,6 @@ public class Company implements Component {
     public void addChild(Component c) {
         managers.add((Manager) c);
         // new manager, new project
-        numberOfProjects++;
     }
 
 }

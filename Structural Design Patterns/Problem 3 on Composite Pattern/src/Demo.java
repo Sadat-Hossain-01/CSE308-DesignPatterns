@@ -2,10 +2,10 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Demo {
-    static Scanner scanner = new Scanner(System.in);
-    static HashMap<String, Company> companies = new HashMap<>();
-    static HashMap<String, Developer> developers = new HashMap<>();
-    static HashMap<String, Manager> managers = new HashMap<>();
+    private static Scanner scanner = new Scanner(System.in);
+    private static HashMap<String, Company> companies = new HashMap<>();
+    private static HashMap<String, Manager> managers = new HashMap<>();
+    private static HashMap<String, Developer> developers = new HashMap<>();
 
     enum entityType {COMPANY, MANAGER, DEVELOPER}
 
@@ -127,7 +127,7 @@ public class Demo {
         System.out.println("Developer successfully added.");
     }
 
-    public static Component preProcess(entityType entity) {
+    public static Component preProcess(entityType entity) { // returns object (company, manager or developer) of a certain name
         HashMap map = null;
         String kind = "";
         if (entity == entityType.COMPANY) {
@@ -205,6 +205,7 @@ public class Demo {
     }
 
     public static void main(String[] args) {
+        System.out.println("Welcome to the Control Hub!");
         while (true) {
             System.out.println();
             System.out.println("1. Add Company");
@@ -218,7 +219,8 @@ public class Demo {
             System.out.println("9. Show Developer Details");
             System.out.println("10. Show Company Hierarchy");
             System.out.println("11. Show Manager Hierarchy");
-            System.out.println("12. Exit");
+            System.out.println("12. Show Developer Hierarchy");
+            System.out.println("13. Exit");
             System.out.print("\nEnter Your Choice: ");
             int choice;
             try {
@@ -265,6 +267,9 @@ public class Demo {
                     showHierarchy(entityType.MANAGER);
                     break;
                 case 12:
+                    showHierarchy(entityType.DEVELOPER);
+                    break;
+                case 13:
                     System.exit(0);
                     break;
                 default:

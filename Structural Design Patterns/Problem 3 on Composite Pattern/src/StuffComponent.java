@@ -3,7 +3,7 @@ import java.util.List;
 
 public abstract class StuffComponent implements Component {
     protected String name;
-    protected Component parent;
+    protected Component parent; // will need this for deleting from parent's children list
 
     enum Role {
         Manager, Developer
@@ -14,11 +14,6 @@ public abstract class StuffComponent implements Component {
 
     public String getName() {
         return name;
-    }
-
-    public StuffComponent(String name, Role role) {
-        this.name = name;
-        this.role = role;
     }
 
     public StuffComponent(String name, Role role, String projectName) {
@@ -39,7 +34,7 @@ public abstract class StuffComponent implements Component {
 
     public final void delete() {
         recursiveDelete(); // delete all children
-        parent.removeChild(this);
+        parent.removeChild(this); // remove itself from parent's children list
     }
 }
 
@@ -56,7 +51,7 @@ class Manager extends StuffComponent {
     public void showHierarchy(int depth) {
         for (int i = 0; i < depth; i++) System.out.print("\t");
         System.out.println("- " + name + " (" + projectName + ")");
-        for (Component c : developers) {
+        for (Developer c : developers) {
             c.showHierarchy(depth + 1);
         }
     }
@@ -68,7 +63,7 @@ class Manager extends StuffComponent {
 
     @Override
     public void recursiveDelete() {
-        for (StuffComponent c : developers) {
+        for (Developer c : developers) {
             c.recursiveDelete();
         }
         developers.clear();
@@ -94,9 +89,8 @@ class Manager extends StuffComponent {
 class Developer extends StuffComponent {
 
     public Developer(Manager manager, String name) {
-        super(name, Role.Developer);
+        super(name, Role.Developer, manager.projectName);
         this.parent = manager;
-        this.projectName = manager.projectName;
         manager.addChild(this);
     }
 

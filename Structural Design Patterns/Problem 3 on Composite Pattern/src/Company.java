@@ -16,7 +16,7 @@ public class Company implements Component {
     @Override
     public void showHierarchy(int depth) {
         System.out.println("- " + name);
-        for (Component c : managers) {
+        for (Manager c : managers) {
             c.showHierarchy(depth + 1);
         }
     }
@@ -24,7 +24,7 @@ public class Company implements Component {
     @Override
     public void showDetails() {
         System.out.println("Company Name: " + name);
-        System.out.println("Number of Projects: " + managers.size());
+        System.out.println("Number of Running Projects: " + managers.size());
     }
 
     @Override
@@ -34,7 +34,7 @@ public class Company implements Component {
 
     public void delete() {
         for (Manager m : managers) {
-            m.recursiveDelete();
+            m.recursiveDelete(); // delete all children (and their children)
         }
         managers.clear();
         System.out.println("Company " + name + " has been deleted.");
@@ -43,7 +43,6 @@ public class Company implements Component {
     @Override
     public void addChild(Component c) {
         managers.add((Manager) c);
-        // new manager, new project
     }
 
 }

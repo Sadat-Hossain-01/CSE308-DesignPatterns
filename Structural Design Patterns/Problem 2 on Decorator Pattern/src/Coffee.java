@@ -3,11 +3,7 @@ import java.util.List;
 
 public abstract class Coffee {
     protected String name;
-    protected List<String> ingredients = new ArrayList<String>();
-
-    public String getName() {
-        return name;
-    }
+    protected List<String> ingredients = new ArrayList<>();
 
     public void setName(String name) {
         this.name = name;
@@ -28,7 +24,7 @@ class BlackCoffee extends Coffee {
     public BlackCoffee() {
         setName("Black Coffee");
         ingredients.add("Water");
-        ingredients.add("Ground Coffee Beans");
+        ingredients.add("Grinded Coffee Beans");
     }
 
     public int getCost() {
@@ -40,7 +36,7 @@ class MilkCoffee extends Coffee {
     public MilkCoffee() {
         setName("Milk Coffee");
         ingredients.add("Milk");
-        ingredients.add("Ground Coffee Beans");
+        ingredients.add("Grinded Coffee Beans");
     }
 
     public int getCost() {

@@ -11,7 +11,7 @@ public abstract class Decorator extends Coffee {
 class ExtraCoffeeBeans extends Decorator {
     public ExtraCoffeeBeans(Coffee coffee) {
         super(coffee);
-        this.ingredients.add("Ground Coffee Beans");
+        ingredients.add("Extra Grinded Coffee Beans");
     }
 
     public int getCost() {
@@ -22,7 +22,7 @@ class ExtraCoffeeBeans extends Decorator {
 class ExtraMilk extends Decorator {
     public ExtraMilk(Coffee coffee) {
         super(coffee);
-        this.ingredients.add("Milk");
+        ingredients.add("Milk");
     }
 
     public int getCost() {
@@ -33,7 +33,7 @@ class ExtraMilk extends Decorator {
 class ExtraDairyCream extends Decorator {
     public ExtraDairyCream(Coffee coffee) {
         super(coffee);
-        this.ingredients.add("Dairy Cream");
+        ingredients.add("Dairy Cream");
     }
 
     public int getCost() {
@@ -44,7 +44,7 @@ class ExtraDairyCream extends Decorator {
 class ExtraCinnamonPowder extends Decorator {
     public ExtraCinnamonPowder(Coffee coffee) {
         super(coffee);
-        this.ingredients.add("Cinnamon Powder");
+        ingredients.add("Cinnamon Powder");
     }
 
     public int getCost() {
@@ -55,7 +55,7 @@ class ExtraCinnamonPowder extends Decorator {
 class ExtraChocolateSauce extends Decorator {
     public ExtraChocolateSauce(Coffee coffee) {
         super(coffee);
-        this.ingredients.add("Chocolate Sauce");
+        ingredients.add("Chocolate Sauce");
     }
 
     public int getCost() {

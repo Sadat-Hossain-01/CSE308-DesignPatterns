@@ -43,13 +43,14 @@ public class Demo {
 
     public static void main(String[] args) {
         char choice;
-        while (true) {
+        boolean exit = false;
+        while (!exit) {
             System.out.println("Welcome to the কফি টং!");
             // a new user is here to order coffee(s)
-            List<Coffee> coffeeList = new ArrayList<Coffee>(); // list of all coffees this user orders
+            List<Coffee> coffeeList = new ArrayList<>(); // list of all coffee for this user
             boolean orderDone = false;
             int totalCost = 0;
-            while (!orderDone) {
+            while (!orderDone && !exit) {
                 System.out.println("What type of coffee do you want to order?");
                 System.out.println("1. Americano");
                 System.out.println("2. Espresso");
@@ -90,6 +91,9 @@ public class Demo {
                     case '7':
                         orderDone = true;
                         break;
+                    case 'q': // keeping this option for quitting the program
+                        exit = true;
+                        break;
                     default:
                         System.out.println("Invalid choice!\n");
                         break;
@@ -98,13 +102,15 @@ public class Demo {
                 if (c != null) {
                     coffeeList.add(c);
                     totalCost += c.getCost();
-                    System.out.println("Order taken successfully!\n");
+                    System.out.println("Coffee added to order!\n");
                 }
             }
 
+            if (exit) break;
+
             // print the order summary
             System.out.println("Total Price: " + totalCost + " BDT");
-            System.out.println("==============================\n");
+            System.out.println("==============================");
             for (Coffee c : coffeeList) {
                 c.showDescription();
                 System.out.print("\n");

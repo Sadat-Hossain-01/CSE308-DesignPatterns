@@ -1,9 +1,10 @@
-public interface Crewmate {
+public interface ICrewmate {
     void studyObjects();
+
     void doMaintenance();
 }
 
-class Crew implements Crewmate {
+class Crewmate implements ICrewmate {
     @Override
     public void studyObjects() {
         System.out.println("Studying interstellar objects");

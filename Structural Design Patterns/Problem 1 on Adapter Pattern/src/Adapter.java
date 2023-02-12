@@ -1,7 +1,7 @@
-public class ImposterAdapter implements Crewmate {
+public class Adapter implements ICrewmate {
     private Imposter imposter;
 
-    public ImposterAdapter(Imposter imposter) {
+    public Adapter(Imposter imposter) {
         this.imposter = imposter;
     }
 
